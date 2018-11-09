@@ -34,4 +34,6 @@ class CategoryController extends Controller
         Category::where('id',$id)->delete();
         return redirect()->route('admin.category.index');
     }
+
+    
 }

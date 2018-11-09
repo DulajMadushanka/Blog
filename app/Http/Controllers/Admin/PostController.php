@@ -32,7 +32,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.post.index',compact('categories','tags'));
+        return view('admin.post.create',compact('categories','tags'));
     }
 
     /**
@@ -71,7 +71,8 @@ class PostController extends Controller
         }
         $post->is_approved = true;
         $post->save();
-        return view('admin.post.index',compact('categories','tags','posts'));
+        $posts = Post::all();
+        return view('admin.post.index',compact('posts','categories','tags'));
         
 
     }
@@ -93,9 +94,9 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit()
     {
-        //
+        
     }
 
     /**

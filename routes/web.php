@@ -47,6 +47,17 @@ Route::post('/image','ImageController@image');
 
 Route::get('/images','ImageController@images');
 
+Route::post('/editCategory/{id}','CategoryController@update');
+
+Route::get('/editpost/{id}','PostController@editPost');
+
+Route::get('/deleteCategory/{id}','CategoryController@delete');
+
+Route::post('/updatepost/{id}','PostController@updatePost');
+
+Route::get('/deletepost/{id}','PostController@deletePost');
+
+
 
 
 

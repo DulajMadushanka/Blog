@@ -75,10 +75,10 @@
                                             <td>{{$post->created_at}}</td>
                                             <td>{{$post->updated_at}}</td>
                                             <td>
-                                            <a href='{{url("/editcate/{$post->id}")}}' class="btn btn-info waves-effect">
+                                            <a href='{{url("/editpost/{$post->id}")}}' class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a href='{{url("/deleteCategory/{$post->id}")}}' class="btn btn-danger waves-effect" type="button" onclick="deleteTag(id)">
+                                                <a href='{{url("/deletepost/{$post->id}")}}' class="btn btn-danger waves-effect" type="button" onclick="deleteTag(id)">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                                   
