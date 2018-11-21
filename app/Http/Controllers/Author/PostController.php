@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Author;
 
+use App\Notifications\NewAuthorPost;
+use Illuminate\Support\Facades\Notification;
 use App\post;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
@@ -71,6 +74,10 @@ class PostController extends Controller
        $post->is_approved = false;
        $post->save();
        $posts = Post::all();
+
+       $users = User::where('role_id','1')->get();
+       Notification::send($users,new NewAuthorPost($post));
+       
        return view('author.post.index',compact('posts','categories','tags'));
     }
 

@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
 
     /*
     |--------------------------------------------------------------------------
@@ -59,6 +59,7 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +85,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => '76b00bc7e5fba9',
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => '73b2e0e85c8a87',
 
     /*
     |--------------------------------------------------------------------------
