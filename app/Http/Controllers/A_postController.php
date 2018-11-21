@@ -4,21 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use App\Tag;
 use App\Category;
+use App\Tag;
 use Auth;
 
 
-class PostController extends Controller
+class A_postController extends Controller
 {
     public function editPost($id){
         $posts = Post::find($id);
         $categories = Category::all();
         $tags = Tag::all();
-        
-        return view('admin.post.edit',compact('categories','tags','posts'));
-    }
 
+        if($post->user_id != Auth::id()){
+            return redirect()->back();
+            //toast massage
+        }
+        else{
+        
+            return view('author.post.edit',compact('categories','tags','posts'));
+        }
+    }
     public function updatePost(Request $request,$id){
         $this->validate($request,[
             'title'=>'required',
@@ -47,7 +53,7 @@ class PostController extends Controller
         }else{
             $post->status = false;
         }
-        $post->is_approved = true;
+        $post->is_approved = false;
         $data = array(
             'title'=>$post->title,
             'slug'=>  $post->slug,
@@ -57,28 +63,16 @@ class PostController extends Controller
             'is_approved' => $post->is_approved
         );
         Post::where('id',$id)->update($data);
-        return redirect()->route('admin.post.index');
+        return redirect()->route('author.post.index');
     }
     public function deletePost($id){
-        Post::where('id',$id)->delete();
-        return redirect()->route('admin.post.index');
-    }
-
-    public function approval($id){
-        $post = new Post;
-        if($post->is_approved == false){
-            $post->is_approved = true;
-            $data = array(
-                'is_approved' => $post->is_approved
-            );
-            Post::where('id',$id)->update($data);
-           
-
+        if($post->user_id != Auth::id()){
+            return redirect()->back();
+            
         }
         else{
-        }   
-        return redirect()->back();
-
+            Post::where('id',$id)->delete();
+            return redirect()->route('author.post.index');
+        }
     }
-  
 }

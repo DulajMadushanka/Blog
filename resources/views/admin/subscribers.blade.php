@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Post')
+@section('title','Subscribers')
 
 @push('çss')
   <!-- JQuery DataTable Css -->
@@ -12,20 +12,15 @@
 <!-- Exportable Table -->
 
         <div class="container-fluid">
-            <div class="block-header">
-               <a class="btn btn-primary waves-effect" href="{{route('admin.post.create')}}">
-               <i class="material-icons">add</i>
-               <span>Add New Post</span>
-               </a>
-            </div>
+           
             <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                All Posts
-                                <span class="badge bg-blue">{{$posts->count()}}</span>
+                                All Subscribers
+                                <span class="badge bg-blue">{{$subscribers->count()}}</span>
                             </h2>
                             
                         </div>
@@ -35,11 +30,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Title</th>
-                                            <th>Author</th>
-                                            <th><i class="material-icons">visibility</i></th>
-                                            <th>Is Approved</th>
-                                            <th>Status</th>
+                                            <th>Email</th>
                                             <th>Created At</th>
                                             <th>Updated At</th>
                                             <th>Action</th>
@@ -47,49 +38,30 @@
                                     </thead>
                                     
                                     <tbody>
-                                   
-                                    @foreach($posts as $key=>$post)
+                                    @foreach($subscribers as $key=>$subscriber)
                                         <tr>
                                        
                                             <td>{{$key + 1}}</td>
-                                            <td>{{str_limit($post->title,'10')}}</td>
-                                            <td>{{$post->user->name}}</td>
-                                            <td>{{$post->view_count}}</td>
+                                            <td>{{$subscriber->email}}</td>
+                                            <td>{{$subscriber->created_at}}</td>
+                                            <td>{{$subscriber->updated_at}}</td>
                                             <td>
-                                                @if($post->is_approved == true)
-                                                    <span class="badge bg-blue">Approved</span>
-                                                @else
-                                                    <span class="badge bg-pink">Pending</span>    
-                                                @endif
-
-                                            </td>
-                                            <td>
-                                                @if($post->status == true)
-                                                    <span class="badge bg-blue">Published</span>
-                                                @else
-                                                    <span class="badge bg-pink">Pending</span>    
-                                                @endif
-
-                                            </td>
-                                           
-                                            <td>{{$post->created_at}}</td>
-                                            <td>{{$post->updated_at}}</td>
-                                            <td>
-                                                <a href='{{url("/showpost/{$post->id}")}}' class="btn btn-info waves-effect">
-                                                    <i class="material-icons">visibility</i>
-                                                </a>
-                                                <a href='{{url("/editpost/{$post->id}")}}' class="btn btn-info waves-effect">
-                                                    <i class="material-icons">edit</i>
-                                                </a>
-                                                <a href='{{url("/deletepost/{$post->id}")}}' class="btn btn-danger waves-effect" type="button" onclick="deleteTag(id)">
+                                               
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteSubcribe()">
                                                     <i class="material-icons">delete</i>
-                                                </a>
+                                                </button>
+                                                <form method="POST" action="{{url('deleteSubscriber',array($subscriber->id))}}" id="deleteSubscribe" enctype="multipart/form-data" style="display:none;">
+                                                {{ csrf_field() }}
+                                            
+                                                
+                                                </form>  
+                                               
                                                   
                                             </td>
                                        
                                         </tr>
-                                   
-                                        @endforeach                                          
+                                    @endforeach      
+                                       
                                        
                                       
                                        
@@ -112,6 +84,38 @@
 @endsection
 
 @push('js')
+<script type="text/javascript">
+        function deleteSubcribe(){
+           
+            
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, approve it!',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling:false,
+                reverseButtons:true}).then((result)=>{
+                    if(result.value){
+                       
+                        document.getElementById('deleteSubscribe').submit();
+                    }
+                    else if(result.dismiss === swal.DismissReason.cancel){
+                        swal(
+                            'Cancelled',
+                            'The post remaining pending :',
+                            'info'
+                        )
+                    }
+                })
+            }
+        
+    </script>   
   <!-- Jquery DataTable Plugin Js -->
   <script src="{{asset('assets/backend/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
     <script src="{{asset('assets/backend/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>

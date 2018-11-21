@@ -13,7 +13,7 @@
 
         <div class="container-fluid">
             <div class="block-header">
-               <a class="btn btn-primary waves-effect" href="{{route('admin.post.create')}}">
+               <a class="btn btn-primary waves-effect" href="{{route('author.post.create')}}">
                <i class="material-icons">add</i>
                <span>Add New Post</span>
                </a>
@@ -75,13 +75,13 @@
                                             <td>{{$post->created_at}}</td>
                                             <td>{{$post->updated_at}}</td>
                                             <td>
-                                                <a href='{{url("/showpost/{$post->id}")}}' class="btn btn-info waves-effect">
+                                                <a href='{{url("/a_showpost/{$post->id}")}}' class="btn btn-info waves-effect">
                                                     <i class="material-icons">visibility</i>
                                                 </a>
-                                                <a href='{{url("/editpost/{$post->id}")}}' class="btn btn-info waves-effect">
+                                                <a href='{{url("/a_editpost/{$post->id}")}}' class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a href='{{url("/deletepost/{$post->id}")}}' class="btn btn-danger waves-effect" type="button" onclick="deleteTag(id)">
+                                                <a href='{{url("/a_deletepost/{$post->id}")}}' class="btn btn-danger waves-effect" type="button" onclick="deleteTag(id)">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                                   

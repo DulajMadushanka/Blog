@@ -85,7 +85,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        //return $post;
+       // return view('admin.post.show',compact('post'));
     }
 
     /**
@@ -109,6 +110,15 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+    }
+
+    public function pending(){
+        $posts = Post::where('is_approved',false)->get();
+        return view('admin.post.pending',compact('posts'));
+    }
+
+    public function approval($id){
+        return $id;
     }
 
     /**
