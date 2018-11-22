@@ -48,15 +48,20 @@ class CategoryController extends Controller
         $categories = new Category();
         $categories->name=$request->name;
         $categories->slug=str_slug($request->name);
-        $image = $request->input('image');
-        $file = $request->input('image');
-
+        $photo = $request->file('image')->getClientOriginalName();
+        var_dump($photo);
+        exit;
        
-        $name = time().'.'.$file->getClientOriginalExtension();
-        $destinationPath = public_path('/uploads');
+        if ($request->hasFile('image')) {
+            $photo = $request->file('image')->getClientOriginalName();
+           
+            $destination = public_path() . '/uploads/';  
+            $request->file('image')->move($destination, $photo);  
+        }
+        var_dump($photo);
+        exit;
+        $categories->image = $photo;
        
-
-        $file->move($destinationPath, $name);
      
         $categories->save();
   

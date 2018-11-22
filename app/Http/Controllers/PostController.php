@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\AuthorPostApproved;
+use Illuminate\Notifications\Notification;
+
 use App\Post;
 use App\Tag;
 use App\Category;
@@ -66,12 +69,15 @@ class PostController extends Controller
 
     public function approval($id){
         $post = new Post;
+        $post = Post::find($id);
         if($post->is_approved == false){
             $post->is_approved = true;
             $data = array(
                 'is_approved' => $post->is_approved
             );
             Post::where('id',$id)->update($data);
+           
+            $post->user->notify(new AuthorPostApproved($post));
            
 
         }

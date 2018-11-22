@@ -25,13 +25,12 @@ class ImageController extends Controller
 
  
 
-        $file = $request->file('image');
-        $name = time().'.'.$file->getClientOriginalExtension();
-        $destinationPath = public_path('/uploads');
-       
-        
-        $file->move($destinationPath, $name);
-        $categories->image=$destinationPath;
+        if ($request->hasFile('image')) {
+            $photo = $request->file('image')->getClientOriginalName();
+            $destination = public_path() . '/uploads/';  
+            $request->file('image')->move($destination, $photo);  
+        }
+        $categories->image=$photo;
         $categories->save();
         return redirect()->route('admin.category.index');
   

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/','HomeController@index')->name('home');
 
 Auth::routes();
 
@@ -68,7 +66,7 @@ Route::get('/deletepost/{id}','PostController@deletePost');
 
 Route::get('/showpost/{id}','PostShowController@showPost');
 
-Route::post('/approval/{id}','PostController@approval')->name('post.approve');
+Route::post('/approval/{id}','PostController@approval');
 
 Route::post('/deleteSubscriber/{id}','Admin\SubscriberController@destroy')->name('subscriber.destroy');
 

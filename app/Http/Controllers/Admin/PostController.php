@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Notifications\NewPostNotify;
+use Illuminate\Support\Facades\Notification;
 
 use App\Post;
 use App\Category;
 use App\Tag;
+use App\Subscriber;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -71,6 +74,14 @@ class PostController extends Controller
         }
         $post->is_approved = true;
         $post->save();
+        // $subscribers = Subscriber::all();
+       
+        // foreach($subscribers as $subscriber){
+        //     $email = $subscriber->email;
+        //     $posts = Post::all();
+        //     Notification::route('mail', $email)->notify(new NewPostNotify($posts));
+        //     //Notification::send($subscriber->email,new NewPostNotify($post));
+        // }
         $posts = Post::all();
         return view('admin.post.index',compact('posts','categories','tags'));
         
