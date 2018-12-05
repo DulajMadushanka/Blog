@@ -6,6 +6,13 @@
 <link href="{{asset('assets/frontend/css/home/styles.css')}}" rel="stylesheet">
 
 <link href="{{asset('assets/frontend/css/home/responsive.css')}}" rel="stylesheet">
+
+<style>
+	.favourite_posts{
+		color:blue;
+	}
+
+</style>
 @endpush
 
 @section('content')
@@ -47,16 +54,27 @@
 
 							<div class="blog-image"><img src="{{'http://localhost:8000/uploads/'.$post->image}}" alt="{{$post->title}}"></div>
 
-							<a class="avatar" href="#"><img src="images/icons8-team-355979.jpg" alt="Profile Image"></a>
+							<a class="avatar" href="#"><img src="{{'http://localhost:8000/uploads/'.$post->user->image}}" alt="Profile Image"></a>
 
 							<div class="blog-info">
 
 								<h4 class="title"><a href="#"><b>{{$post->title}}</b></a></h4>
 
 								<ul class="post-footer">
-									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li>
+									@guest
+										<a href="javascript:void(0);" onclick=""><i class="ion-heart"></i>{{$post->favourite_to_users->count()}}</a>
+									@else
+											<a href="javascript:void(0);" onclick="document.getElementById('favourite-form-{{$post->id}}').submit();" class="{{ !Auth::user()->favourite_posts->where('pivot.post_id',$post->id)->count() == 0 ? 'favourite_posts' : '' }}"><i class="ion-heart"></i>{{$post->favourite_to_users->count()}}</a>
+											<form id="favourite-form-{{$post->id}}" method="post" action="{{route('post.favourite',$post->id)}}" style="display:none;">
+											{{ csrf_field() }}
+											</form>
+									@endguest
+									
+									
+									</li>
 									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
-									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+									<li><a href="#"><i class="ion-eye"></i>{{$post->view_count}}</a></li>
 								</ul>
 
 							</div><!-- blog-info -->
@@ -65,7 +83,10 @@
 				</div><!-- col-lg-4 col-md-6 -->
 				@endforeach
 				
-
+				<!-- toastr.info('To add favourite list. You need to login first.','Info',{
+											closeButton: true,
+											progressBar: true,
+											}) -->
 				
 
 			</div><!-- row -->

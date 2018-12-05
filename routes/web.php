@@ -17,6 +17,10 @@ Auth::routes();
 
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
 
+Route::group(['middleware'=>['auth']],function(){
+    Route::post('favourite/{post}/add','FavouriteController@add')->name('post.favourite');
+});
+
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
     Route::get('settings','SettingsController@index')->name('settings');
@@ -28,6 +32,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 
     Route::get('/pending/post','PostController@pending')->name('post.pending');
     Route::get('/subscribers','SubscriberController@index')->name('subscriber.index');
+    Route::get('/favourite','FavouriteController@index')->name('favourite.index');
    
    
  
@@ -37,6 +42,9 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
 
 Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middleware'=>['auth','author']],function(){
     Route::get('dashboard','DashboardController@index')->name('dashboard');
+    Route::get('settings','SettingsController@index')->name('settings');
+    Route::post('profile-update','SettingsController@updateProfile')->name('profile.update');
+    Route::post('password-update','SettingsController@updatePassword')->name('password.update');
     Route::resource('post','PostController');
 });
 
