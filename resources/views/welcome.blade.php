@@ -1,16 +1,26 @@
 @extends('layouts.frontend.app')
 
-@section('title','Login')
+@section('title','login')
+
+
+
 
 @push('css')
 <link href="{{asset('assets/frontend/css/home/styles.css')}}" rel="stylesheet">
 
 <link href="{{asset('assets/frontend/css/home/responsive.css')}}" rel="stylesheet">
 
+
+
 <style>
 	.favourite_posts{
 		color:blue;
 	}
+	h1, h2, h3, h4, h5, h6, p, a, ul, span, li, img {
+    margin: 0px;
+    padding: 4px;
+    font-weight: 300;
+}
 
 </style>
 @endpush
@@ -58,7 +68,7 @@
 
 							<div class="blog-info">
 
-								<h4 class="title"><a href="#"><b>{{$post->title}}</b></a></h4>
+								<h4 class="title"><a href="{{route('post.details',$post->slug)}}"><b>{{$post->title}}</b></a></h4>
 
 								<ul class="post-footer">
 									<li>
@@ -88,10 +98,10 @@
 											progressBar: true,
 											}) -->
 				
-
+											<div style="margin-left:540px;">{{$posts->links()}}</div>
 			</div><!-- row -->
-
-			<a class="load-more-btn" href="#"><b>LOAD MORE</b></a>
+			
+		
 
 		</div><!-- container -->
 	</section><!-- section -->

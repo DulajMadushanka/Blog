@@ -13,9 +13,12 @@
 
 Route::get('/','HomeController@index')->name('home');
 
+
 Auth::routes();
 
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
+
+Route::get('post/{slug}','SinglepageController@details')->name('post.details');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::post('favourite/{post}/add','FavouriteController@add')->name('post.favourite');

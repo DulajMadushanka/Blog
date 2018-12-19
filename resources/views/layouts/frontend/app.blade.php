@@ -47,7 +47,7 @@
 
 
  <script src="{{asset('assets/frontend/js/scripts.js')}}"></script> 
-<
+
         
 @stack('js')
 </body>
