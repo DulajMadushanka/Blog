@@ -104,51 +104,48 @@
 
           <!-- Comments Form -->
           <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">Comment:</h5>
             <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+              @guest
+                <p>For post a new comment. Tou need to login first. <a href="{{route('login')}}">Login</a></p>
+              @else
+                <form method="post" action="{{route('comment.store',$post->id)}}">
+                {{ csrf_field() }}
+                  <div class="form-group">
+                    <textarea class="form-control" rows="3" name="comment"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+              @endguest
             </div>
           </div>
 
           <!-- Single Comment -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
+          <h4><b>Comments({{$post->comments()->count()}})</b></h4><br/>
+          @if($post->comments->count()>=0)
+              @foreach($post->comments as $comment)
 
-          <!-- Comment with nested comments -->
-          <div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-            <div class="media-body">
-              <h5 class="mt-0">Commenter Name</h5>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              <div class="card my-4">
+            
+                <div class="card-body">
+                    <img style="width:70px;" class="d-flex mr-3 rounded-circle" src="{{asset('uploads/'.$post->user->image)}}" alt="">
+                    
+                      <h5 style="margin-left:60px;" class="mt-0"><b>{{$comment->user->name}}</b></h5>
+                      <h6 style="margin-left:60px;" class="date">on {{$comment->created_at->diffForHumans()}}</h6><br/>
+                      <p>{{$comment->comment}}</p>    
                 </div>
               </div>
 
-              <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                  <h5 class="mt-0">Commenter Name</h5>
-                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              <hr/>
+
+              @endforeach
+          @else
+              <div class="card my-4">
+                <div class="card-body">
+                <p>No comment yet. Be the first :)</p> 
                 </div>
               </div>
-
-            </div>
-          </div>
+          @endif
 
         </div>
 

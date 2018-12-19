@@ -22,6 +22,7 @@ Route::get('post/{slug}','SinglepageController@details')->name('post.details');
 
 Route::group(['middleware'=>['auth']],function(){
     Route::post('favourite/{post}/add','FavouriteController@add')->name('post.favourite');
+    Route::post('comment/{post}','CommentController@store')->name('comment.store');
 });
 
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']],function(){
