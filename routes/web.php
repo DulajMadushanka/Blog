@@ -20,6 +20,8 @@ Route::post('subscriber','SubscriberController@store')->name('subscriber.store')
 
 Route::get('post/{slug}','SinglepageController@details')->name('post.details');
 
+Route::get('/category/{slug}','PostController@postByCategory')->name('category.posts');
+
 Route::group(['middleware'=>['auth']],function(){
     Route::post('favourite/{post}/add','FavouriteController@add')->name('post.favourite');
     Route::post('comment/{post}','CommentController@store')->name('comment.store');
@@ -37,7 +39,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/pending/post','PostController@pending')->name('post.pending');
     Route::get('/subscribers','SubscriberController@index')->name('subscriber.index');
     Route::get('/favourite','FavouriteController@index')->name('favourite.index');
-   
+    Route::get('/comments','CommentController@index')->name('comment.index');
+  
    
  
    
@@ -50,6 +53,7 @@ Route::group(['as'=>'author.','prefix'=>'author','namespace'=>'Author','middlewa
     Route::post('profile-update','SettingsController@updateProfile')->name('profile.update');
     Route::post('password-update','SettingsController@updatePassword')->name('password.update');
     Route::resource('post','PostController');
+    Route::get('comments','CommentController@index')->name('comment.index');
 });
 
 Route::post('/editTag/{id}','TagController@update');
@@ -85,12 +89,19 @@ Route::post('/approval/{id}','PostController@approval');
 
 Route::post('/deleteSubscriber/{id}','Admin\SubscriberController@destroy')->name('subscriber.destroy');
 
+ Route::post('/comments/{id}','Admin\CommentController@destroy')->name('comment.destroy');
+
 //author  
 Route::get('/a_editpost/{id}','A_postController@editPost');
 Route::get('/a_deletepost/{id}','A_postController@deletePost');
 Route::post('/a_updatepost/{id}','A_postController@updatePost');
 Route::get('/a_showpost/{id}','A_showpostController@showPost');
+Route::post('/acomments/{id}','Author\CommentController@destroy')->name('comment.destroy');
 
+View::composer('layouts.frontend.partial.footer',function($view){
+    $categories = App\Category::all();
+    $view->with('categories',$categories); 
+});
 
 
 

@@ -86,5 +86,11 @@ class PostController extends Controller
         return redirect()->back();
 
     }
+    public function postByCategory($slug){
+        $category = Category::where('slug',$slug)->first();
+        $posts= $category->posts()->approved()->published()->get();
+       
+        return view('category',compact('category','posts'));
+    }
   
 }

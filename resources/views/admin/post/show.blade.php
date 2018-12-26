@@ -52,7 +52,7 @@
                             </div>
                             <div class="body">
                                  @foreach($category as $category)  
-                                    <span class="label bg-cyan">{{$category->name}}</span>
+                                    <a href="{{route('category.posts',$category->slug)}}"><span class="label bg-cyan">{{$category->name}}</span></a>
 
                                  @endforeach 
 

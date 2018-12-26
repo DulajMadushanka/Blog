@@ -65,13 +65,13 @@
           <hr>
 
           <!-- Date/Time -->
-          <a  class="avatar" href="#"><img style="width:70px;height:50px;border-radius: 50%;"  src="{{asset('uploads/'.$post->user->image)}}" alt="Profile Image"></a>
+          <a  class="avatar" href="#"><img style="width:70px;height:70px;border-radius: 50%;"  src="{{asset('uploads/'.$post->user->image)}}" alt="Profile Image"></a>
           <p>{{$post->user->name}} {{$post->created_at->diffForHumans()}}</p>
 
           <hr>
 
           <!-- Preview Image -->
-          <img class="img-fluid rounded" src="{{asset('uploads/'.$post->image)}}" alt="">
+          <img style="width:450px;height:400px;" class="img-fluid rounded" src="{{asset('uploads/'.$post->image)}}" alt="">
 
           <hr>
 
@@ -95,7 +95,7 @@
 									
 									
 									</li>
-									<li style="margin-left:80px;margin-top:-25px;"><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li style="margin-left:80px;margin-top:-25px;"><a href="#"><i class="ion-chatbubble"></i>{{$post->comments->count()}}</a></li>
 									<li style="margin-left:160px;margin-top:-23px;"><a href="#"><i class="ion-eye"></i>{{$post->view_count}}</a></li>
 								</ul>
          
