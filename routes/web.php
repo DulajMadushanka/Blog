@@ -18,6 +18,8 @@ Auth::routes();
 
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
 
+Route::post('search','SearchController@search')->name('search');
+
 Route::get('post/{slug}','SinglepageController@details')->name('post.details');
 
 Route::get('/category/{slug}','PostController@postByCategory')->name('category.posts');
@@ -39,6 +41,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'
     Route::get('/pending/post','PostController@pending')->name('post.pending');
     Route::get('/subscribers','SubscriberController@index')->name('subscriber.index');
     Route::get('/favourite','FavouriteController@index')->name('favourite.index');
+    Route::get('authors','AuthorController@index')->name('author.index');
+    
     Route::get('/comments','CommentController@index')->name('comment.index');
   
    
@@ -88,6 +92,8 @@ Route::get('/showpost/{id}','PostShowController@showPost');
 Route::post('/approval/{id}','PostController@approval');
 
 Route::post('/deleteSubscriber/{id}','Admin\SubscriberController@destroy')->name('subscriber.destroy');
+
+Route::post('/deleteauthors/{id}','Admin\AuthorController@destroy')->name('author.destroy');
 
  Route::post('/comments/{id}','Admin\CommentController@destroy')->name('comment.destroy');
 
