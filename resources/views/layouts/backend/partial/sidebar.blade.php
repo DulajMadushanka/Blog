@@ -92,7 +92,7 @@
                     </li>
 
 
-                    <li class="{{Request::is('subscribers')?'active':''}}">
+                    <li class="{{Request::is('admin/subscribers')?'active':''}}">
                         <a href="{{route('admin.subscriber.index')}}">
                             <i class="material-icons">subscriptions</i>
                             <span>Subscribers</span>
@@ -121,7 +121,7 @@
                                 {{ csrf_field() }}
                             </form>
                             
-                    </li>
+                    </li><br/><br/><br/><br><br/><br/><br/><br/><br/>
                     @endif
 
                     @if(Request::is('author/*'))
@@ -150,7 +150,7 @@
                             <i class="material-icons">settings</i>
                             <span>Settings </span>
                         </a>
-                    </li><br/><br/>
+                    </li>
 
                     <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -165,35 +165,10 @@
                             </form>
                             
                     </li> 
-                    @endif
-
-                    
-                    
-                   
+                    @endif  
                            
                 </ul>
-                    
                    
-                       
-                   
-                   
-                    
-                   
-                   
-                   
-                   
-                   
-               
             </div>
-            <!-- #Menu -->
-            <!-- Footer -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
-                </div>
-                <div class="version">
-                    <b>Version: </b> 1.0.5
-                </div>
-            </div>
-            <!-- #Footer -->
+            
         </aside>
