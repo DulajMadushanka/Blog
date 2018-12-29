@@ -21,30 +21,30 @@
                             <i class="material-icons">playlist_add_check</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW TASKS</div>
-                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+                            <div class="text">Total Posts</div>
+                            <div class="number count-to" data-from="0" data-to="{{$posts->count()}}" data-speed="15" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-cyan hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">help</i>
+                            <i class="material-icons">favorite</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW TICKETS</div>
-                            <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">Total Favourite</div>
+                            <div class="number count-to" data-from="0" data-to="{{Auth::user()->favourite_posts()->count()}}" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-light-green hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">forum</i>
+                            <i class="material-icons">library_books</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW COMMENTS</div>
-                            <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">Pending Posts</div>
+                            <div class="number count-to" data-from="0" data-to="{{$total_pending_posts}}" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -54,8 +54,8 @@
                             <i class="material-icons">person_add</i>
                         </div>
                         <div class="content">
-                            <div class="text">NEW VISITORS</div>
-                            <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20"></div>
+                            <div class="text">Total Views</div>
+                            <div class="number count-to" data-from="0" data-to="{{$all_views}}" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
@@ -326,21 +326,6 @@
 <script src="{{asset('assets/backend/plugins/jquery-countto/jquery.countTo.js')}}"></script>
 
 <!-- Morris Plugin Js -->
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/morrisjs/morris.js"></script>
-
-<!-- ChartJs -->
-<script src="plugins/chartjs/Chart.bundle.js"></script>
-
-<!-- Flot Charts Plugin Js -->
-<script src="plugins/flot-charts/jquery.flot.js"></script>
-<script src="plugins/flot-charts/jquery.flot.resize.js"></script>
-<script src="plugins/flot-charts/jquery.flot.pie.js"></script>
-<script src="plugins/flot-charts/jquery.flot.categories.js"></script>
-<script src="plugins/flot-charts/jquery.flot.time.js"></script>
-
-<!-- Sparkline Chart Plugin Js -->
-<script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>
-
 <script src="{{asset('assets/backend/js/pages/index.js')}}"></script>
+
 @endpush
