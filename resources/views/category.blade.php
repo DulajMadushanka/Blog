@@ -68,7 +68,7 @@
 
                 <div class="blog-image"><img src="{{'http://localhost:8000/uploads/'.$post->image}}" alt="{{$post->title}}"></div>
 
-                <a class="avatar" href="#"><img src="{{'http://localhost:8000/uploads/'.$post->user->image}}" alt="Profile Image"></a>
+                <a class="avatar" href="{{route('author.profile',$post->user->username)}}"><img src="{{'http://localhost:8000/uploads/'.$post->user->image}}" alt="Profile Image"></a>
 
                 <div class="blog-info">
 

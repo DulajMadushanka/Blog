@@ -24,6 +24,8 @@ Route::get('post/{slug}','SinglepageController@details')->name('post.details');
 
 Route::get('/category/{slug}','PostController@postByCategory')->name('category.posts');
 
+Route::get('/profile/{username}','AuthorController@profile')->name('author.profile');
+
 Route::group(['middleware'=>['auth']],function(){
     Route::post('favourite/{post}/add','FavouriteController@add')->name('post.favourite');
     Route::post('comment/{post}','CommentController@store')->name('comment.store');

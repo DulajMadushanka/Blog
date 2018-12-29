@@ -9,6 +9,7 @@ use App\Comment;
 class CommentController extends Controller
 {
     public function index(){
+       
         $comments = Comment::latest()->get();
         return view('admin.comments',compact('comments'));
     }

@@ -10,6 +10,12 @@
 
 <link href="{{asset('assets/frontend/css/home/responsive.css')}}" rel="stylesheet">
 
+<link href="{{asset('assets/frontend/css/bootstrap.css')}}" rel="stylesheet">
+
+<link href="{{asset('assets/frontend/css/swiper.css')}}" rel="stylesheet">
+
+<link href="{{asset('assets/frontend/css/ionicons.css')}}" rel="stylesheet">
+
 
 
 <style>
@@ -64,7 +70,7 @@
 
 							<div class="blog-image"><img src="{{'http://localhost:8000/uploads/'.$post->image}}" alt="{{$post->title}}"></div>
 
-							<a class="avatar" href="#"><img src="{{'http://localhost:8000/uploads/'.$post->user->image}}" alt="Profile Image"></a>
+							<a class="avatar" href="{{route('author.profile',$post->user->username)}}"><img src="{{'http://localhost:8000/uploads/'.$post->user->image}}" alt="Profile Image"></a>
 
 							<div class="blog-info">
 
