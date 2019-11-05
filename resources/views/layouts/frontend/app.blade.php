@@ -21,7 +21,16 @@
 <link href="{{asset('assets/frontend/css/ionicons.css')}}" rel="stylesheet">
 
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
+<style rel="stylesheet">
+header .src-area {
+    position: relative;
+    height: 75px;
+    width: 50%;
+    float: right;
+    display: inline-block;
+    background: #F5F7F6;
+}
+</style>
 
 
 @stack('css')
@@ -29,8 +38,9 @@
 </head>
 <body>
    
-@include('layouts.frontend.partial.header')   
-	
+  
+
+@include('layouts.frontend.partial.header')		
 
 @yield('content')	
 

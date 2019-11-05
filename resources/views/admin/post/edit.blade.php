@@ -94,7 +94,7 @@
                             
                             </div>
                             <div class="body">
-                                <textarea id="tinymce" name="body">"{{$posts->body}}"</textarea>
+                                <textarea id="tinymce" name="body">"{!! $posts->body !!}"</textarea>
                             </div>
                         </div>
                     </div>
@@ -104,12 +104,6 @@
 
 
 </div>
-
-
-
-
-
-
 
 
 @endsection

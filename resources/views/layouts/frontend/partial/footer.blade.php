@@ -1,4 +1,4 @@
-<footer style="width:1530px;">
+<footer style="width:1530px;background-color:#E6E6FA">
 
 		<div class="container">
 			<div class="row">
@@ -6,9 +6,9 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="footer-section">
 
-						<a class="logo" href="#"><img src="images/logo.png" alt="Logo Image"></a>
-						<p class="copyright">{{config('app.name')}} @ 2017. All rights reserved.</p>
-						<p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+						<!-- <a class="logo" href="#"><img src="images/logo.png" alt="Logo Image"></a> -->
+						<p class="copyright">{{config('app.name')}} @ 2019. All rights reserved.</p>
+						<p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Dulaj Madushanka</a></p>
 						<ul class="icons">
 							<li><a href="https://www.facebook.com/dulaj.madushanka.372"><i class="ion-social-facebook-outline"></i></a></li>
 							<li><a href="https://twitter.com/DulajMa86670995"><i class="ion-social-twitter-outline"></i></a></li>
@@ -39,7 +39,7 @@
 						<div class="input-area">
 							<form method="post" action="{{url('/subscriber')}}">
 							{{ csrf_field() }}
-								<input class="email-input" name="email" type="email" placeholder="Enter your email">
+								<input style="margin-top:10px;" class="email-input" name="email" type="email" placeholder="Enter your email">
 								<button class="submit-btn" type="submit"><i class="icon ion-ios-email-outline"></i></button>
 							</form>
 						</div>
@@ -50,3 +50,6 @@
 			</div><!-- row -->
 		</div><!-- container -->
 	</footer>
+
+
+	

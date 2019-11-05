@@ -154,8 +154,8 @@
             <div class="card-body">
             <a  class="avatar" href="#"><img style="width:140px;height:140px;border-radius:50%"  src="{{asset('uploads/'.$author->image)}}" alt="Profile Image"></a><br/><br/>
               <p >{{$author->name}}</p><br/>
-              <p >{{$author->about}}</p><br/>
-              <strong >Author Since: {{$author->created_at->toDateString()}}</strong><br/>
+              <p >{{$author->about}}</p>
+              <strong >Author Since: {{$author->created_at->toDateString()}}</strong><br/><br/>
               <strong >Total Posts : {{$author->posts->count()}}</strong>
             </div>
           </div>

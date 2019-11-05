@@ -78,8 +78,6 @@ class PostController extends Controller
             Post::where('id',$id)->update($data);
            
             $post->user->notify(new AuthorPostApproved($post));
-           
-
         }
         else{
         }   
@@ -88,8 +86,9 @@ class PostController extends Controller
     }
     public function postByCategory($slug){
         $category = Category::where('slug',$slug)->first();
-        $posts= $category->posts()->approved()->published()->get();
-       
+        $cat_id = $category->id;
+        $posts= Post::where('cat_id',$cat_id)
+                    ->where('is_approved',1) ->get();
         return view('category',compact('category','posts'));
     }
   

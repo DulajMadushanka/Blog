@@ -16,7 +16,7 @@ class A_postController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        if($post->user_id != Auth::id()){
+        if($posts->user_id != Auth::id()){
             return redirect()->back();
             //toast massage
         }
@@ -66,7 +66,8 @@ class A_postController extends Controller
         return redirect()->route('author.post.index');
     }
     public function deletePost($id){
-        if($post->user_id != Auth::id()){
+        $posts = Post::find($id);
+        if($posts->user_id != Auth::id()){
             return redirect()->back();
             
         }

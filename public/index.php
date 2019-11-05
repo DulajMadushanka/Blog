@@ -37,7 +37,7 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
-| Run The Application
+| Run The com.rst.boot.Application
 |--------------------------------------------------------------------------
 |
 | Once we have the application, we can handle the incoming request

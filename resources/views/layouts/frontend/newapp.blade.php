@@ -29,8 +29,8 @@
 </head>
 <body>
    
-@include('layouts.frontend.partial.newheader')   
-	
+  
+@include('layouts.frontend.partial.newheader')	
 
 @yield('content')	
 

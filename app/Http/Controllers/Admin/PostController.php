@@ -63,6 +63,8 @@ class PostController extends Controller
         $posts = Post::latest()->get();
         $post->user_id = Auth::id();
         $post->title = $request->title;
+        $post->cat_id = $request->categores;
+        
         
         $post->slug = $slug;
         $post->image = $photo;

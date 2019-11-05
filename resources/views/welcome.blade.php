@@ -28,6 +28,15 @@
     font-weight: 300;
 }
 
+header .src-area {
+    position: relative;
+    height: 75px;
+    width: 50%;
+    float: right;
+    display: inline-block;
+    background: #F5F7F6;
+}
+
 </style>
 @endpush
 
@@ -42,7 +51,7 @@
 			<div class="swiper-slide">
 				<a class="slider-category" href="{{route('category.posts',$category->slug)}}">
 					<div class="blog-image">
-						<img  src="{{'http://localhost:8000/uploads/'.$category->image}}" alt="{{$category->name}}">
+						<img style="height:250px;"  src="{{'http://localhost:8000/uploads/'.$category->image}}" alt="{{$category->name}}">
 					</div>
 					<div class="category">
 						<div class="display-table center-text">
@@ -59,8 +68,8 @@
 
 </div><!-- slider -->
 
-	<section class="blog-area section">
-		<div class="container">
+	<section class="blog-area section" style="margin-left:140px;">
+		<div class="container" >
 
 			<div class="row">
 				@foreach($posts as $post)
@@ -90,9 +99,9 @@
 									
 									</li>
 									<li>
-										<a href="#"><i class="ion-chatbubble"></i>{{$post->comments->count()}}</a>
+										<a href="{{route('post.details',$post->slug)}}"><i class="ion-chatbubble"></i>{{$post->comments->count()}}</a>
 									</li>
-									<li><a href="#"><i class="ion-eye"></i>{{$post->view_count}}</a></li>
+									<li><a href="{{route('post.details',$post->slug)}}"><i class="ion-eye"></i>{{$post->view_count}}</a></li>
 								</ul>
 
 							</div><!-- blog-info -->
@@ -106,7 +115,7 @@
 											progressBar: true,
 											}) -->
 				
-											<div style="margin-left:540px;">{{$posts->links()}}</div>
+											<div style="margin-left:500px;">{{$posts->links()}}</div>
 			</div><!-- row -->
 			
 		
